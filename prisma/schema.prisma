@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//User
+// 1. id - уникальный идентификатор пользователя (может быть как числом, так и строковым – как удобнее)
+// 2. username - уникальное имя пользователя
+// 3. created_at - время создания пользователя
+
+model User {
+  id String @id @default(uuid())
+
+  username String @unique
+
+  created_at DateTime @default(now())
+
+  // many Message to one User
+  messages Message[]
+
+  // отношение многие-ко-многим
+  posts UsersChats[]
+}
+
+// Chat
+// • id - уникальный идентификатор чата
+// • name - уникальное имя чата
+// • users - список пользователей в чате, отношение многие-ко-многим
+// • created_at - время создания
+
+model Chat {
+  id String @id @default(uuid())
+
+  name String @unique
+
+  // • users - список пользователей в чате, отношение многие-ко-многим
+  users UsersChats[]
+
+  created_at DateTime @default(now())
+
+  messages Message[]
+}
+
+model UsersChats {
+  chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId String // relation scalar field (used in the `@relation` attribute above)
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([chatId, userId])
+}
+
+// Message
+// • id - уникальный идентификатор сообщения
+// • chat - ссылка на идентификатор чата, в который было отправлено сообщение
+// • author - ссылка на идентификатор отправителя сообщения, отношение многие-к-одному
+// • text - текст отправленного сообщения
+// • created_at - время создания
+
+model Message {
+  id String @id @default(uuid())
+
+  // • chat - ссылка на идентификатор чата, в который было отправлено сообщение many to one
+  chat   Chat   @relation(fields: [chatId], references: [id])
+  chatId String
+
+  //many Message to one User
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  text String
+
+  created_at DateTime @default(now())
+}

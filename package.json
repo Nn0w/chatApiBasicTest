@@ -1,0 +1,40 @@
+{
+  "name": "chatapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "fix": "npm run lint && npm run format",
+    "build": "tsc -p tsconfig.json",
+    "autobuild": "npm run build -- -w",
+    "dev": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.3.1",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.23.2",
+    "fastify-plugin": "^4.5.1",
+    "pino": "^8.15.1",
+    "util": "^0.12.5",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.1",
+    "@types/pino": "^7.0.5",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "prisma": "^5.3.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  }
+}
