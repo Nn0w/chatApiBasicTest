@@ -41,7 +41,7 @@ npm i
 npx prisma migrate dev --name init
 ```
 
-Now all tables should apper in the DB 6. Start dev server to check the set up
+Now all tables should appear in the DB 6. Start dev server to check the set up
 
 ```sh
 npm run dev
