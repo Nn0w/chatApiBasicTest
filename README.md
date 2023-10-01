@@ -8,7 +8,7 @@ Install the dependencies and devDependencies and start the server.
 2. Change directory to the root of the project
 
 ```sh
-cd chatClean
+cd chatApiBasicTest
 ```
 
 3. Create .env file with two values:
