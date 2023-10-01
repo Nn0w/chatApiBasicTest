@@ -19,7 +19,7 @@ cd chatApiBasicTest
    .env values are` one liners`
 
 ```sh
-echo "DATABASE_URL=\"<YOUR SQL TYPE>://mysql://<USER>:<PASSWORD>@<HOST>:<PORT>/<DATABASE NAME>?<OPTIONAL SETTINGS>
+echo "DATABASE_URL=\"<YOUR SQL TYPE>://<USER>:<PASSWORD>@<HOST>:<PORT>/<DATABASE NAME>?<OPTIONAL SETTINGS>
 \"" >> .env
 ```
 
